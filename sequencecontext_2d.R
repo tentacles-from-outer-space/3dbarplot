@@ -17,22 +17,22 @@ read.table("snvspermegabase.txt", header=TRUE) %>%
 require(latticeExtra)
 lattice.options(
 	default.args = list(as.table=TRUE)
-	,default.theme = "col.whitebg"
+	,default.theme = col.whitebg()
 )
 
 
 #* Various barcharts ----
-y_rot <- list(x = list(rot = 90))
-barchart(n~type|x*z, X, origin=0, scales=y_rot) %>% useOuterStrips
-barchart(n~type|z*x, X, origin=0, scales=y_rot) %>% useOuterStrips
+x_rot <- list(x = list(rot = 90))
+barchart(n~type|x*z, X, origin=0, scales=x_rot) %>% useOuterStrips
+barchart(n~type|z*x, X, origin=0, scales=x_rot) %>% useOuterStrips
 barchart(n~x|type*z, X, origin=0) %>% useOuterStrips
 barchart(n~x|z*type, X, origin=0) %>% useOuterStrips
 barchart(n~z|type*x, X, origin=0) %>% useOuterStrips
 barchart(n~z|x*type, X, origin=0) %>% useOuterStrips
 
 #* Various dotplots ----
-dotplot(n~type|z, groups=x, X, origin=0, scales=y_rot, auto.key=list(space="right"))
-dotplot(n~type|x, groups=z, X, origin=0, scales=y_rot, auto.key=list(space="right"))
+dotplot(n~type|z, groups=x, X, origin=0, scales=x_rot, auto.key=list(space="right"))
+dotplot(n~type|x, groups=z, X, origin=0, scales=x_rot, auto.key=list(space="right"))
 dotplot(n~x|z, groups=type, X, origin=0, auto.key=list(space="right"))
 dotplot(n~x|type, groups=z, X, origin=0, auto.key=list(space="right"))
 dotplot(n~z|x, groups=type, X, origin=0, auto.key=list(space="right"))
