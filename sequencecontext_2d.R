@@ -42,6 +42,8 @@ dotplot(n~z|type, groups=x, X, origin=0, auto.key=list(space="right")) %>% grid_
 clrs <- colorRampPalette(brewer.pal(9,"YlOrRd")[-1])
 levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso")
 # this needs some colour polishing
+# Alternative: rule out cells with 0 or 1 mutation; size of cell == number of mutation == hight in 3d barchart
+levelplot(replace(n,n<=1,NA)~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso", shrink=c(0.1,1))
 
 
 
