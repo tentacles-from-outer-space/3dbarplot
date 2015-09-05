@@ -15,8 +15,11 @@ read.table("snvspermegabase.txt", header=TRUE) %>%
 # Plots (2d) ----
 #* Setup ----
 require(latticeExtra)
-lattice.options(default.args=list(as.table=TRUE))
-trellis.par.set(theme=col.whitebg())
+lattice.options(
+	default.args = list(as.table=TRUE)
+	,default.theme = "col.whitebg"
+)
+
 
 #* Various barcharts ----
 y_rot <- list(x = list(rot = 90))
@@ -35,7 +38,7 @@ dotplot(n~x|type, groups=z, X, origin=0, auto.key=list(space="right"))
 dotplot(n~z|x, groups=type, X, origin=0, auto.key=list(space="right"))
 dotplot(n~z|type, groups=x, X, origin=0, auto.key=list(space="right"))
 
-#* One levelplot to rule them all
+#* One levelplot to rule them all ----
 levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=colorRampPalette(brewer.pal(9,"YlOrRd")[-1]))
 # this needs some colour polishing
 
