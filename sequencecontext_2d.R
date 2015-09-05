@@ -19,24 +19,24 @@ lattice.options(
 	default.args = list(as.table=TRUE)
 	,default.theme = col.whitebg()
 )
-
+grid_h <- function(p) p + layer_(panel.grid(h=-1, v=0))
 
 #* Various barcharts ----
 x_rot <- list(x = list(rot = 90))
-barchart(n~type|x*z, X, origin=0, scales=x_rot) %>% useOuterStrips
-barchart(n~type|z*x, X, origin=0, scales=x_rot) %>% useOuterStrips
-barchart(n~x|type*z, X, origin=0) %>% useOuterStrips
-barchart(n~x|z*type, X, origin=0) %>% useOuterStrips
-barchart(n~z|type*x, X, origin=0) %>% useOuterStrips
-barchart(n~z|x*type, X, origin=0) %>% useOuterStrips
+barchart(n~type|x*z, X, origin=0, scales=x_rot) %>% grid_h %>% useOuterStrips
+barchart(n~type|z*x, X, origin=0, scales=x_rot) %>% grid_h %>% useOuterStrips
+barchart(n~x|type*z, X, origin=0) %>% grid_h %>% useOuterStrips
+barchart(n~x|z*type, X, origin=0) %>% grid_h %>% useOuterStrips
+barchart(n~z|type*x, X, origin=0) %>% grid_h %>% useOuterStrips
+barchart(n~z|x*type, X, origin=0) %>% grid_h %>% useOuterStrips
 
 #* Various dotplots ----
-dotplot(n~type|z, groups=x, X, origin=0, scales=x_rot, auto.key=list(space="right"))
-dotplot(n~type|x, groups=z, X, origin=0, scales=x_rot, auto.key=list(space="right"))
-dotplot(n~x|z, groups=type, X, origin=0, auto.key=list(space="right"))
-dotplot(n~x|type, groups=z, X, origin=0, auto.key=list(space="right"))
-dotplot(n~z|x, groups=type, X, origin=0, auto.key=list(space="right"))
-dotplot(n~z|type, groups=x, X, origin=0, auto.key=list(space="right"))
+dotplot(n~type|z, groups=x, X, origin=0, scales=x_rot, auto.key=list(space="right")) %>% grid_h
+dotplot(n~type|x, groups=z, X, origin=0, scales=x_rot, auto.key=list(space="right")) %>% grid_h
+dotplot(n~x|z, groups=type, X, origin=0, auto.key=list(space="right")) %>% grid_h
+dotplot(n~x|type, groups=z, X, origin=0, auto.key=list(space="right")) %>% grid_h
+dotplot(n~z|x, groups=type, X, origin=0, auto.key=list(space="right")) %>% grid_h
+dotplot(n~z|type, groups=x, X, origin=0, auto.key=list(space="right")) %>% grid_h
 
 #* One levelplot to rule them all ----
 levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=colorRampPalette(brewer.pal(9,"YlOrRd")[-1]))
