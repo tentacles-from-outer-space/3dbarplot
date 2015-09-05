@@ -39,7 +39,9 @@ dotplot(n~z|x, groups=type, X, origin=0, auto.key=list(space="right")) %>% grid_
 dotplot(n~z|type, groups=x, X, origin=0, auto.key=list(space="right")) %>% grid_h
 
 #* One levelplot to rule them all ----
-levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=colorRampPalette(brewer.pal(9,"YlOrRd")[-1]))
+clrs <- colorRampPalette(brewer.pal(9,"YlOrRd")[-1])
+levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso")
 # this needs some colour polishing
+
 
 
