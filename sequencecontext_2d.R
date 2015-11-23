@@ -46,9 +46,10 @@ levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="i
 levelplot(replace(n,n<=1,NA)~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso", shrink=c(0.1,1))
 
 #* much better:
-levelplot(n~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso"
-						,panel = function(subscripts, x, y, z, at, region, col.regions) {
-							zs <- sqrt(z/max(z, na.rm=TRUE))
-							panel.points(x[subscripts], y[subscripts], pch=21, cex=4*zs[subscripts], col="lightgrey",fill=level.colors(z[subscripts], at, col.regions, colors = TRUE))
-						})
+levelplot(
+	n~x*z|type, X, scales=list(alternating=3), col.regions=clrs, aspect="iso"
+	,panel = function(subscripts, x, y, z, at, region, col.regions) {
+		zs <- sqrt(z/max(z, na.rm=TRUE))
+		panel.points(x[subscripts], y[subscripts], pch=21, cex=6*zs[subscripts], col="lightgrey",fill=level.colors(z[subscripts], at, col.regions, colors = TRUE))
+	})
 
